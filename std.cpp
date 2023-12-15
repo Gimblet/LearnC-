@@ -1,4 +1,4 @@
-//!Structure of a program https://cplusplus.com/doc/tutorial/program_structure/
+//! Structure of a program https://cplusplus.com/doc/tutorial/program_structure/
 
 /*
   Block Comments are declared this way (Pretty standard to be honest)
@@ -11,7 +11,7 @@ using namespace std; // By writting this statement we get rid of the std (standa
 
 int main()
 {
-  std::cout << "Hello World "; // cout = character output
-  cout << "Mayra ";            // This one also works because the std has been called from the name space (Line 8)
-  cout << "Programa Rapido";  // The "<<" is kinda a equal sign, it as the cout means character output, the << means that the following count "Programa Rapido", will be inserted into that character output (The << is called insertion operator)
+  std::cout << "Hello World \n"; // cout = character output
+  cout << "Mayra ";              // This one also works because the std has been called from the name space (Line 8)
+  cout << "Programa Rapido";     // The "<<" is kinda a equal sign, it as the cout means character output, the << means that the following count "Programa Rapido", will be inserted into that character output (The << is called insertion operator)
 }
