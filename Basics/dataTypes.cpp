@@ -5,16 +5,15 @@ using namespace std;
 int main()
 {
   // Some Data Types
-  char normalChar;
+  char normalChar = 'j';
   int intDataType;
-  float floatDataType;
+  float floatDataType = 3.4;
   double doubleDT;
   char16_t char16Bits;
   unsigned int notLessThanCero = 65536;
   signed int upTo32767 = -32768;
-
   std::string why = "Why do Strings have to be this way"; //? Unlike other languages, the string class is not used by default, so we have to include it. In order to use it as a declaration for a data type, we must use it with std::string VARNAME
-  string myString = "This is a string"; //using namespace std removes the need to write std:: in the type declaration, making strings more similar to other languages
+  string myString = "This is a string";                   // using namespace std removes the need to write std:: in the type declaration, making strings more similar to other languages
 
   //! Special DataTypes
   auto byASpecificValue = 38.8; // Basically the same (float)
