@@ -72,7 +72,7 @@ bool isEqual(T a, U b)
 
 // Templates may also include non-type arguments, in other words, normal types (int, double, etc).
 
-template <class T,const int N>
+template <class T, const int N>
 T fixedMultiply(T a)
 {
   return a * N;
@@ -97,9 +97,9 @@ int main()
   cout << endl
        << "\nNON-TYPE TEMPLATE ARGUMENTS" << endl
        << endl;
-  
+
   cout << fixedMultiply<int, 5>(10) << endl;
-  cout << fixedMultiply<int, 10>(10) << endl; //Is calling two versions of the same functions
+  cout << fixedMultiply<int, 10>(10) << endl; // Is calling two versions of the same functions.
 
   return 0;
 }
