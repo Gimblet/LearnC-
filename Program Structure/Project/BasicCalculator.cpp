@@ -5,9 +5,9 @@
 using namespace std;
 
 int userResponse, variableN = 2, c;
-double answer;
 bool state = true;
-string holder;
+string holder, goAgain = "n";
+string numbers[5] = {"first", "second", "third", "fourth", "fifth"};
 
 void greetings();
 void initNVariable();
@@ -42,7 +42,7 @@ namespace scenarios
       state = true;
       cout << "SUM selected" << endl;
       initNVariable();
-      cout << "The result is :" << sum();
+      cout << "\nThe result is : " << sum() << endl;
     }
     else if (userResponse == 2)
     {
@@ -76,6 +76,7 @@ namespace scenarios
 int main()
 {
   greetings();
+newOperation:
   do
   {
     if (c != 0)
@@ -85,6 +86,13 @@ int main()
     scenarios::options();
 
   } while (state == false);
+  cout << "\nNew Operation? (y/n): ";
+  getline(cin, goAgain);
+  cout << endl;
+  if (goAgain == "y" || goAgain == "Y")
+    goto newOperation;
+  else
+    cout << "Invalid/n response. Now exiting... Thank you for using the program!";
 }
 
 inline void greetings()
@@ -103,6 +111,7 @@ inline void initNVariable()
   cout << "Type your answer: ";
   getline(cin, holder);
   stringstream(holder) >> variableN;
+  cout << endl;
 }
 
 double sum()
@@ -112,6 +121,7 @@ double sum()
   for (int i = 0; i < variableN; i++)
   {
     double userInput = 0.0;
+    cout << "Type the " << numbers[i] << " number : ";
     getline(cin, holder);
     stringstream(holder) >> userInput;
     array[i] = userInput;
