@@ -7,7 +7,6 @@ using namespace std;
 int userResponse, variableN = 2, c;
 bool state = true;
 string holder, goAgain = "n";
-string numbers[5] = {"first", "second", "third", "fourth", "fifth"};
 
 void greetings();
 void initNVariable();
@@ -49,21 +48,20 @@ namespace scenarios
       state = true;
       cout << "REST selected" << endl;
       initNVariable();
-      rest();
+      cout << "\nThe result is : " << rest() << endl;
     }
     else if (userResponse == 3)
     {
       state = true;
       cout << "MULTIPLY selected" << endl;
       initNVariable();
-      multiply();
+      cout << "\nThe result is : " << multiply() << endl;
     }
     else if (userResponse == 4)
     {
       state = true;
       cout << "DIVISION selected" << endl;
-      initNVariable();
-      division();
+      cout << "\nThe result is : " << division() << endl;
     }
     else
     {
@@ -108,8 +106,10 @@ inline void greetings()
 }
 
 // Validates that the number entered by the user is within 1 to 5
-inline bool validation(int x)
+inline bool Nvalidation(const int &x)
 {
+  if (userResponse == 4) // If user selected Divison
+    return false;
   int range[5]{1, 2, 3, 4, 5};
   for (int i = 0; i < range[i]; i++)
   {
@@ -129,7 +129,7 @@ invalidVariableN:
   getline(cin, holder);
   stringstream(holder) >> variableN;
   cout << endl;
-  if (validation(variableN))
+  if (Nvalidation(variableN))
   {
     cout << "Please stay within the given margin" << endl
          << endl;
@@ -139,6 +139,7 @@ invalidVariableN:
 
 double sum()
 {
+  string numbers[5] = {"first", "second", "third", "fourth", "fifth"};
   double array[variableN];
 
   for (int i = 0; i < variableN; i++)
@@ -161,15 +162,69 @@ double sum()
 
 int rest()
 {
-  return 0;
+  string numbers[5] = {"first", "second", "third", "fourth", "fifth"};
+  double array[variableN];
+
+  for (int i = 0; i < variableN; i++)
+  {
+    double userInput = 0.0;
+    cout << "Type the " << numbers[i] << " number : ";
+    getline(cin, holder);
+    stringstream(holder) >> userInput;
+    array[i] = userInput;
+  }
+
+  double result = array[0];
+
+  for (int i = 1; i < variableN; i++)
+  {
+    result -= array[i];
+  }
+  return result;
 }
 
 double multiply()
 {
-  return 0;
+  string numbers[5] = {"first", "second", "third", "fourth", "fifth"};
+  double array[variableN];
+
+  for (int i = 0; i < variableN; i++)
+  {
+    double userInput = 0.0;
+    cout << "Type the " << numbers[i] << " number : ";
+    getline(cin, holder);
+    stringstream(holder) >> userInput;
+    array[i] = userInput;
+  }
+
+  double result = array[0];
+
+  for (int i = 1; i < variableN; i++)
+  {
+    result *= array[i];
+  }
+  return result;
 }
 
 double division()
 {
-  return 0;
+  string numbers[2] = {"dividen", "quotient"};
+  double array[variableN];
+
+  for (int i = 0; i < variableN; i++)
+  {
+    double userInput = 0.0;
+    cout << "Type the " << numbers[i] << " number : ";
+    getline(cin, holder);
+    stringstream(holder) >> userInput;
+    array[i] = userInput;
+  }
+
+  double result = array[0];
+
+  for (int i = 1; i < variableN; i++)
+  {
+    result /= array[i];
+  }
+  return result;
 }
