@@ -90,9 +90,12 @@ newOperation:
   getline(cin, goAgain);
   cout << endl;
   if (goAgain == "y" || goAgain == "Y")
+  {
+    c = 0;
     goto newOperation;
+  }
   else
-    cout << "Invalid/n response. Now exiting... Thank you for using the program!";
+    cout << "Invalid/n response. Now exiting... Thank you for using the program.";
 }
 
 inline void greetings()
@@ -104,14 +107,34 @@ inline void greetings()
        << endl;
 }
 
+// Validates that the number entered by the user is within 1 to 5
+inline bool validation(int x)
+{
+  int range[5]{1, 2, 3, 4, 5};
+  for (int i = 0; i < range[i]; i++)
+  {
+    if (x == range[i])
+      return false;
+    else if (i >= 6)
+      return true;
+  }
+}
+
 inline void initNVariable()
 {
+invalidVariableN:
   cout << "How many numbers are going to be envolved in the operation? (default: 2/ max: 5)" << endl
        << endl;
   cout << "Type your answer: ";
   getline(cin, holder);
   stringstream(holder) >> variableN;
   cout << endl;
+  if (validation(variableN))
+  {
+    cout << "Please stay within the given margin" << endl
+         << endl;
+    goto invalidVariableN;
+  }
 }
 
 double sum()
