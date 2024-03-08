@@ -55,9 +55,52 @@ inline void declarePointers()
   cout << "Extended : " << *ptr2 << endl;
 }
 
+//? Pointers and Arrays
+// Pointers and arrays are very similar. The only diference being that an array cannot be reassigned to another address, while a pointer can.
+// Therefore it is possible to use pointers to iterate through an array. Doing the following operation valid.
+
+inline void arraysAndPointers()
+{
+  int array[3] = {1, 2, 3};
+  int *p = array; //* Valid
+
+  cout << "\nArrays and Pointers" << endl;
+
+  *p = 10; // Equals array[0] = 10
+
+  p++;     // Equals array[1]
+  *p = 20; // Equals array[1] = 20
+
+  p = &array[2]; // Equals array[2]
+  *p = 30;       // Equals array[2] = 30
+
+  for (int i = 0; i < 3; i++)
+  {
+    cout << array[i] << endl;
+  }
+
+  // More Operations
+
+  cout << "\nMore Operations w arrays" << endl;
+
+  p = array + 2; // Equals array[2]
+  *p = 300;      // Equals array[2] = 300
+
+  p = array;      // Equals array[0]
+  *(p + 1) = 200; // Equals array[1] = 200
+
+  for (int i = 2; i >= 0; i--)
+  {
+    cout << array[i] << endl;
+  }
+}
+
+//! The brackets in the arrays are a some sort of dereference operator called the subscript operator. It is used to get the value of the variable that the pointer is pointing to.
+
 int main()
 {
   setAdress();
   declarePointers();
+  arraysAndPointers();
   return 0;
 }
