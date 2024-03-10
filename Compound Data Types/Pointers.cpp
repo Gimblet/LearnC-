@@ -148,13 +148,54 @@ void pointerArit()
     q++;
   */
 }
+//todo PLACE The brackets in the arrays are a some sort of dereference operator called the subscript operator. It is used to get the value of the variable that the pointer is pointing to.
 
-//! The brackets in the arrays are a some sort of dereference operator called the subscript operator. It is used to get the value of the variable that the pointer is pointing to.
+//? Pointers and Const
+// Pointers may point to constant or non-constant value. To do this we should add the const keyword before the pointer's type. (Its possible to put it after the type)
+void constantPointers()
+{
+  //* The pointer itself does not need to be constant, this means that the pointer may be modified but the value it points to cannot be modified.
+  const int constant = 5;
+  int data = 10;
+  const int *pointer;
+
+  pointer = &constant; // Pointer to constant value
+  //* Pointer may also point to a non-constant value. This is possible because it can be implicitly converted to a constant value.
+  pointer = &data; // Pointer modified, it is popinting to a non-constant value
+
+  //! Pointers may also be constant themselves. This means that after they a assigned an address, they cannot be reassigned to another address. To declare a constant pointer the const keyword must be placed after the asterisk.
+  const int *const constatPointerTC = &constant; // Constant pointer to a constant value
+  const int *const constatPointerTN = &data;     // Constant pointer to a non-constant value
+}
+
+//? Pointers and Strings
+// Strings are a series of characters ending with the null character. Therefore we can use pointers to iterate through the string.
+
+// char *pointerString = "Hello";
+//* cout << *(pointerString + 1) << endl; WOULD PRINT e
+
+//? Pointers to Pointers
+// Pointers may also point to other pointers. This is useful when working with multidimensional arrays. To declare it just add another asterisk before the pointer's name.
+
+void pointerIntoPointer()
+{
+  int variable = 10;
+  int *regularPointer = &variable;
+  int **pointerToPointer = &regularPointer; // Pointer to pointer (The value of pointerToPointer is the address of pointer, which itself has the address of variable)
+
+  cout << "\nPointers to Pointers" << endl;
+
+  cout << "\nPointer pointing to the address of a variable : " << regularPointer << endl; // Adress of variable
+  cout << "Pointer pointing to the address of a pointer : " << pointerToPointer << endl;
+}
+
+//? Void Pointers
 
 int main()
 {
   setAdress();
   declarePointers();
   arraysAndPointers();
+  pointerIntoPointer();
   return 0;
 }
