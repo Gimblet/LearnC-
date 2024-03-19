@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -57,6 +58,7 @@ inline void declarePointers()
 
 //? Pointers and Arrays
 // Pointers and arrays are very similar. The only diference being that an array cannot be reassigned to another address, while a pointer can.
+// The brackets in the arrays are a some sort of dereference operator called the subscript operator. It is used to get the value of the variable that the pointer is pointing to.
 // Therefore it is possible to use pointers to iterate through an array. Doing the following operation valid.
 
 inline void arraysAndPointers()
@@ -148,7 +150,6 @@ void pointerArit()
     q++;
   */
 }
-//todo PLACE The brackets in the arrays are a some sort of dereference operator called the subscript operator. It is used to get the value of the variable that the pointer is pointing to.
 
 //? Pointers and Const
 // Pointers may point to constant or non-constant value. To do this we should add the const keyword before the pointer's type. (Its possible to put it after the type)
@@ -190,12 +191,75 @@ void pointerIntoPointer()
 }
 
 //? Void Pointers
+// Void pointers are pointers that do not have a type per-se. Therefore they can be anytype. Their big limitation is that they cannot deference the value they are pointing to. However they can be converted to any other type of pointer.
+
+void getVoidPointersData(void *voidPointer)
+{
+  cout << "\nVoid Pointers" << endl;
+
+  // To convert a void pointer to a different type we must put between parenthesis the type we want to convert it to followed by a asterisk.
+
+  cout << "\nVoid Pointer Converted to String : " << *(string *)voidPointer << endl; // In this case we also wrote an asterisk before the parenthesis to dereference the value of the pointer
+}
+
+//? Invalid Pointers / null pointers
+// In this language it is possible to initialize a pointer with an adress that does not exist. As an example we can define both a pointer and an array with just 5 elements, but initialize the pointer with the address of the 6th element.
+//! The type of pointer mentioned above will not give an error but it may cause unwanted behavior when the value of the invalid pointer is deferenced by another pointer
+
+// It is indeed possible to declare pointers that "point to nowhere". This is done in any of the following ways:
+
+int *nullPointer1 = 0;
+int *nullPointer2 = nullptr;
+int *nullPointer3 = NULL;
+
+//? Pointer to Function
+
+// Are used to pass functions as arguments (Parameters) This way we can write less code and delete almost identical functions. The syntax is the following:
+
+int sumFuction(int a, int b)
+{
+  return a + b;
+}
+
+int (*funcPointer)(int, int) = sumFuction; // Type + (PointerName)(Arguments{leave blank if there's none})
+
+//! Real World Example
+
+double multiply(int a, int b)
+{
+  return a * b;
+}
+
+double division(int a, int b)
+{
+  return a / b;
+}
+
+double operation(int x, int y, double (*functionHolder)(int, int)) // By using the pointer to function we can call both division and multiply. This eliminates to need to separatetly call both functions making the code lighter and more human readable.
+{
+  return functionHolder(x, y);
+}
 
 int main()
 {
+  string username = "Diego";
   setAdress();
   declarePointers();
   arraysAndPointers();
   pointerIntoPointer();
+  getVoidPointersData(&username);
+
+  cout << "\nPointer to Function : " << funcPointer(10, 20) << endl;
+
+  cout << "\nPOINTER TO FUNCTION EXAMPLE N2" << endl
+       << endl;
+  cout << "Dividing 10 by 5 : ";
+  // Division
+  double (*divisionPointer)(int, int) = division;    // Declaring a pointer to a function (Has the address of division)
+  cout << operation(10, 5, divisionPointer) << endl; // Would also work as operation(10, 20, division);
+  // Multiplication
+  cout << "Multiplying 10 by 5 : ";
+  cout << operation(10, 5, multiply) << endl; // Direct call to the function
+
   return 0;
 }
